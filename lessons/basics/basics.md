@@ -86,7 +86,7 @@ iex> false
 
 ### Atoms
 
-An atom is a constant who's name is their value, if you're familiar with Ruby these are synonymous with Symbols:
+An atom is a constant whose name is their value. If you're familiar with Ruby these are synonymous with Symbols:
 
 ```elixir
 iex> :foo
@@ -191,7 +191,7 @@ iex> not 42
 
 ### Comparison
 
-Elixir comes with all the comparisons operators we're used to: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` and `>`.
+Elixir comes with all the comparison operators we're used to: `==`, `!=`, `===`, `!==`, `<=`, `>=`, `<` and `>`.
 
 ```elixir
 iex> 1 > 2
@@ -213,7 +213,7 @@ iex> 2 === 2.0
 false
 ```
 
-An important feature of Elixir is that any two types can be compared, this is particularly useful in sorting.  We don't need to memorize the sort order but it is important to be aware of it:
+An important feature of Elixir is that any two types can be compared; this is particularly useful in sorting.  We don't need to memorize the sort order but it is important to be aware of it:
 
 ```elixir
 number < atom < reference < functions < port < pid < tuple < maps < list < bitstring
