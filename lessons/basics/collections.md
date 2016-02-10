@@ -20,7 +20,7 @@ List, tuples, keywords, maps, dicts and functional combinators.
 
 ## Lists
 
-Lists are simple collections of values, they may include multiple types; lists may include non-unique values:
+Lists are simple collections of values that may include multiple types or non-unique values:
 
 ```elixir
 iex> [3.41, :pie, "Apple"]
@@ -59,7 +59,7 @@ iex> ["foo", :bar, 42] -- [42, "bar"]
 
 ### Head / Tail
 
-When using lists it is common to work with the list's head and tail.  The head is the first element of the list and the tail the remaining elements.  Elixir provides two helpful methods, `hd` and `tl`, for working with these parts:
+When using lists it is common to work with the list's head and tail.  The head is the first element of the list and the tail is the remaining elements.  Elixir provides two helpful methods, `hd` and `tl`, for working with these parts:
 
 ```elixir
 iex> hd [3.41, :pie, "Apple"]
@@ -118,7 +118,7 @@ For these reasons keyword lists are most commonly used to pass options to functi
 
 ## Maps
 
-In Elixir maps are the "go-to" key-value store, unlike keyword lists they allow keys of any type and they do not follow ordering.  You can define a map with the `%{}` syntax:
+In Elixir maps are the "go-to" key-value store. Unlike keyword lists, they allow keys of any type and they do not follow ordering.  You can define a map with the `%{}` syntax:
 
 ```elixir
 iex> map = %{:foo => "bar", "hello" => :world}
