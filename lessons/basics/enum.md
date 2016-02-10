@@ -27,7 +27,7 @@ A set of algorithms for enumerating over collections.
 
 The `Enum` module includes over one hundred functions for working with the collections we learned about in the last lesson.
 
-This lesson will only cover a subset of the available functions, to see a complete set of functions visit the official [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html) docs; for lazy enumeration use the [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html) module.
+This lesson will only cover a subset of the available functions. To see the complete set, visit the official [`Enum`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html) docs. (For lazy enumeration, use the [`Stream`](http://elixir-lang.org/docs/v1.0/elixir/Stream.html) module.)
 
 
 ### all?
@@ -59,7 +59,7 @@ iex> Enum.chunk([1, 2, 3, 4, 5, 6], 2)
 [[1, 2], [3, 4], [5, 6]]
 ```
 
-There are a few options for `chunk` but we won't go into them, check out [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) in the official docs to learn more.
+There are a few options for `chunk` that we won't go into here, so check out [`chunk/2`](http://elixir-lang.org/docs/v1.0/elixir/Enum.html#chunk/2) in the official docs to learn more.
 
 ### chunk_by
 
@@ -81,7 +81,7 @@ two
 three
 ```
 
-__Note__: The `each` method does return the atom `:ok`.
+__Note__: The `each` method returns the atom `:ok`.
 
 ### map
 
@@ -112,7 +112,7 @@ iex> Enum.max([5, 3, 0, -1])
 
 ### reduce
 
-With `reduce` we can distill our collection down into a single value.  To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first value is used:
+With `reduce` we can distill our collection into a single value.  To do this we supply an optional accumulator (`10` in this example) to be passed into our function; if no accumulator is provided the first value is used:
 
 ```elixir
 iex> Enum.reduce([1, 2, 3], 10, fn(x, acc) -> x + acc end)
@@ -123,7 +123,7 @@ iex> Enum.reduce([1, 2, 3], fn(x, acc) -> x + acc end)
 
 ### sort
 
-Sorting our collections is made easy with not one, but two, `sort` functions.  The first option available to us uses Elixir's term ordering to determine the sorted order:
+Sorting our collections is made easy with not one, but two, `sort` functions.  The first uses Elixir's term ordering to determine the sorted order:
 
 ```elixir
 iex> Enum.sort([5, 6, 1, 3, -1, 4])
