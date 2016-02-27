@@ -16,7 +16,7 @@ In this lesson we will look at the control structures available to us in Elixir.
 
 ## `if` and `unless`
 
-Chances are you've encountered `if/2` before, and if you've used Ruby you're familiar with `unless/2`.  In Elixir they work much the same way but they are defined as macros, not language constructs; You can find their implementation in the [Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
+Chances are you've encountered `if/2` before, and if you've used Ruby you're familiar with `unless/2`.  In Elixir they work much the same way but they are defined as macros, not language constructs; you can find their implementation in the [Kernel module](http://elixir-lang.org/docs/stable/elixir/#!Kernel.html).
 
 It should be noted that in Elixir, the only falsey values are `nil` and the boolean `false`.
 
@@ -98,7 +98,7 @@ iex> case {1, 2, 3} do
 "Will match"
 ```
 
-Check the official docs for [Expressions allowed in guard clauses](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
+Check the official docs for [expressions allowed in guard clauses](http://elixir-lang.org/getting-started/case-cond-and-if.html#expressions-in-guard-clauses).
 
 
 ## `cond`
