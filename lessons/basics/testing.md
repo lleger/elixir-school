@@ -19,9 +19,9 @@ Testing is an important part of developing software.  In this lesson we'll look 
 
 ## ExUnit
 
-Elixir's built-in test framework is ExUnit and it includes everything we need to thoroughly test our code.  Before moving on it is important to note that tests are implemented as Elixir scripts so we need to use the `.exs` file extension.  Before we can run our tests we need to start ExUnit with `ExUnit.start()`, this is most commonly done in `test/test_helper.exs`.
+Elixir's built-in test framework is ExUnit and it includes everything we need to thoroughly test our code.  Before moving on, it's important to note that tests are implemented as Elixir scripts so we need to use the `.exs` file extension.  Before we can run our tests we need to start ExUnit with `ExUnit.start()`, this is most commonly done in `test/test_helper.exs`.
 
-When we generated our example project in the previous lesson, mix was helpful enough to create a simple test for us, we can find it at `test/example_test.exs`:
+When we generated our example project in the previous lesson, Mix was helpful enough to create a simple test for us, we can find it at `test/example_test.exs`:
 
 ```elixir
 defmodule ExampleTest do
@@ -45,7 +45,7 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 
 If you've written tests before then you're familiar with `assert`; in some frameworks `should` or `expect` fill the role of `assert`.
 
-We use the `assert` macro to test that the expression is true.  In the event that it is not, an error will be raised and our tests will fail.  To test a failure let's change our sample and then run `mix test`:
+We use the `assert` macro to test that the expression is true.  If it isn't, an error will be raised and our tests will fail.  To test a failure let's change our sample and then run `mix test`:
 
 ```elixir
 defmodule ExampleTest do
@@ -76,7 +76,7 @@ Finished in 0.03 seconds (0.02s on load, 0.01s on tests)
 1 tests, 1 failures
 ```
 
-ExUnit will tells us exactly where our failed assertions are, what the expected value was, and what the actual was.
+ExUnit will tells us exactly where our failed assertions are, what the expected value was, and what the actual value was.
 
 ### refute
 
@@ -84,7 +84,7 @@ ExUnit will tells us exactly where our failed assertions are, what the expected 
 
 ### assert_raise
 
-Sometimes it may be necessary to assert that an error has been raised, we can do this with `assert_raise`.  We'll see an example of `assert_raise` in the next lesson on Plug.
+Sometimes it may be necessary to assert that an error has been raised. We can do this with `assert_raise`.  We'll see an example of this in the lesson on Plug.
 
 ## Test Setup
 
@@ -112,4 +112,3 @@ end
 The simple answer to mocking in Elixir: don't.  You may instinctively reach for mocks but they are highly discouraged in the Elixir community and for good reason.  If you follow good design principles the resulting code will be easy to test as individual components.
 
 Resist the urge.
-
