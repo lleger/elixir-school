@@ -44,9 +44,9 @@ As you probably already guessed, in the shorthand version our parameters are ava
 
 ## Pattern matching
 
-Pattern matching isn't limited to just variables in Elixir, it can be applied to function signatures as we will see in this section.
+Pattern matching isn't limited to just variables in Elixir -- it can also be applied to function signatures as we will see in this section.
 
-Elixir uses pattern matching to identify the first set of parameters which match and invokes the corresponding body:
+Elixir uses pattern matching to identify the first set of parameters which match and then invokes the corresponding body:
 
 ```elixir
 iex> handle_result = fn
@@ -64,7 +64,7 @@ An error has occurred!
 
 ## Named functions
 
-We can define functions with names so we can refer to them later, these named functions are defined with the `def` keyword within a module.  We'll learn more about Modules in the next lessons, for now we'll focus on the named functions alone.
+We can define functions with names so we can refer to them later. These named functions are defined with the `def` keyword within a module.  We'll learn more about Modules in the next lesson, but for now we'll focus on the named functions alone.
 
 Functions defined within a module are available to other modules for use, this is a particularly useful building block in Elixir:
 
@@ -103,7 +103,7 @@ iex> Length.of [1, 2, 3]
 
 ### Private functions
 
-When we don't want other modules accessing a function we can use private functions, which can only be called within their Module.  We can define them in Elixir with `defp`:
+When we don't want other modules accessing a function, we can mark it as private with `defp`:
 
 ```elixir
 defmodule Greeter do
@@ -123,7 +123,7 @@ iex> Greeter.phrase
 
 We briefly covered guards in the [Control Structures](/control-structures.md) lesson, now we'll see how we can apply them to named functions.  Once Elixir has matched a function any existing guards will be tested.
 
-In the follow example we have two functions with the same signature, we rely on guards to determine which to use based on the argument's type:
+In the follow example we have two functions with the same signature and rely on guards to determine which to use based on the argument's type:
 
 ```elixir
 defmodule Greeter do
@@ -189,7 +189,7 @@ end
 ** (CompileError) def hello/2 has default values and multiple clauses, define a function head with the defaults
 ```
 
-Elixir doesn't like default arguments in multiple matching functions, it can be  confusing.  To handle this we add a function head with our default arguments:
+Elixir doesn't like default arguments in multiple matching functions because it can be  confusing.  To handle this we add a function head with our default arguments:
 
 ```elixir
 defmodule Greeter do
