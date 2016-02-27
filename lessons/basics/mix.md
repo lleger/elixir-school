@@ -6,9 +6,9 @@ order: 9
 lang: en
 ---
 
-Before we can dive into the deeper waters of Elixir we first need to learn about mix. If you're familiar with Ruby mix is Bundler, RubyGems, and Rake combined. It's a crucial part of any Elixir project and in this lesson we're going to explore just a few of it's great features. To see all that mix has to offer run `mix help`.
+Before we can dive into the deeper waters of Elixir we first need to learn about Mix. If you're familiar with Ruby, Mix is Bundler, RubyGems, and Rake combined. It's a crucial part of any Elixir project and in this lesson we're going to explore just a few of its great features. To see all that Mix has to offer run `mix help`.
 
-Until now we've been working exclusively within `iex` which has limitations.  In order to build something substantial we need to divide our code up into many files to effectively manage it, mix let's us do that with projects.
+Until now we've been working exclusively within `iex`, which has limitations.  In order to build something substantial we need to divide our code up into many files to effectively manage it, and Mix lets us do that with projects.
 
 ## Table of Contents
 
@@ -20,7 +20,7 @@ Until now we've been working exclusively within `iex` which has limitations.  In
 
 ## New Projects
 
-When we're ready to create a new Elixir project, mix makes it easy with the `mix new` command.  This will generate our project's folder structure and necessary boilerplate.  This is pretty straight forward, so let's get started:
+When we're ready to create a new Elixir project, Mix makes it easy with the `mix new` command.  This will generate our project's folder structure and necessary boilerplate.  This is pretty straight forward, so let's get started:
 
 ```bash
 $ mix new example
@@ -41,7 +41,7 @@ From the output we can see that mix has created our directory and a number of bo
 * creating test/example_test.exs
 ```
 
-In this lesson we're going to focus our attention on `mix.exs`.  Here we configure our application, dependencies, environment, and version.  Open the file in your favorite editor, you should see something like this (comments removed for brevity):
+In this lesson we're going to focus our attention on `mix.exs`.  Here we configure our application, dependencies, environment, and version.  Open the file in your favorite editor. You should see something like this (comments removed for brevity):
 
 ```elixir
 defmodule Example.Mixfile do
@@ -72,9 +72,9 @@ The `application` section is used during the generation of our application file 
 
 ## Compilation
 
-Mix is smart and will compile your changes when necessary, but it may still be necessary explicitly compile your project.  In this section we'll cover how to compile our project and what compilation does.
+Mix is smart and will compile your changes when necessary, but it may still be necessary to explicitly compile your project.  In this section we'll cover how to compile our project and what compilation does.
 
-To compile a mix project we only need to run `mix compile` in our base directory:
+To compile a Mix project we only need to run `mix compile` in our base directory:
 
 ```bash
 $ mix compile
@@ -87,11 +87,11 @@ Compiled lib/example.ex
 Generated example app
 ```
 
-When we compile a project mix creates a `_build` directory for our artifacts.  If we look inside `_build` we will see our compiled application: `example.app`.
+When we compile a project Mix creates a `_build` directory for our artifacts.  If we look inside `_build` we will see our compiled application: `example.app`.
 
 ## Interactive
 
-It may be necessary to use `iex` within the context of our application.  Thankfully for us, mix makes this easy.  With our application compiled we can start a new `iex` session:
+It may be necessary to use `iex` within the context of our application.  Thankfully, Mix makes this easy.  With our application compiled we can start a new `iex` session:
 
 ```bash
 $ iex -S mix
@@ -103,9 +103,9 @@ Starting `iex` this way will loads your application and dependencies into the cu
 
 Our project doesn't have any dependencies but will shortly, so we'll go ahead and cover defining dependencies and fetching them.
 
-To add a new dependency we need to first add it to our `mix.exs` in the `deps` section.  Our dependency list is comprised of tuples with two required values and one optional: The package name as an atom, the version string, and optional options.
+To add a new dependency we need to first add it to our `mix.exs` in the `deps` section.  Our dependency list is comprised of tuples with two required values and one optional: the package name as an atom, the version string, and other options.
 
-For this example let's look at a project with dependencies, like [phoenix_slim](https://github.com/doomspork/phoenix_slim):
+For this example let's look at a project with dependencies, like [`phoenix_slim`](https://github.com/doomspork/phoenix_slim):
 
 ```elixir
 def deps do
@@ -128,7 +128,7 @@ That's it!  We've defined and fetched our project dependencies.  Now we're prepa
 
 ## Environments
 
-Mix, much like Bundler, supports differing environments.  Out of the box mix works with three environments:
+Mix, much like Bundler, supports multiple environments.  Out of the box it works with three environments:
 
 + `:dev` — The default environment.
 + `:test` — Used by `mix test`. Covered further in our next lesson.
