@@ -6,7 +6,7 @@ order: 8
 lang: en
 ---
 
-We know from experience its unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a specialized map known as a struct in order to organize our code more efficiently.
+We know from experience that it's unruly to have all of our functions in the same file and scope.  In this lesson we're going to cover how to group functions and define a struct, which is a specialized map, in order to organize our code more efficiently.
 
 ## Table of Contents
 
@@ -28,7 +28,7 @@ Let's look at a basic example:
 ``` elixir
 defmodule Example do
   def greeting(name) do
-    ~s(Hello #{name}.)
+    "Hello #{name}."
   end
 end
 
@@ -36,7 +36,7 @@ iex> Example.greeting "Sean"
 "Hello Sean."
 ```
 
-It is possible to nest modules in Elixir, allowing you to further namespace your functionality:
+It's possible to nest modules in Elixir, allowing you to further namespace your functionality:
 
 ```elixir
 defmodule Example.Greetings do
@@ -62,7 +62,7 @@ defmodule Example do
   @greeting "Hello"
 
   def greeting(name) do
-    ~s(#{@greeting} #{name}.)
+    "#{@greeting} #{name}."
   end
 end
 ```
@@ -71,7 +71,7 @@ It is important to note there are reserved attributes in Elixir.  The three most
 
 + `moduledoc` — Documents the current module.
 + `doc` — Documentation for functions and macros.
-+ `behaviour` — Use an OTP or use-defined behaviour.
++ `behaviour` — Use an OTP or user-defined behaviour.
 
 ## Structs
 
@@ -116,7 +116,7 @@ iex> %{name: "Sean"} = sean
 
 ## Composition
 
-Now that we know how to create modules and structs let's learn how to include existing functionality in them through composition.  Elixir provides us with a variety of different ways to interact with other modules, let's look at what we have available to us.
+Now that we know how to create modules and structs let's learn how to include existing functionality in them through composition.  Elixir provides us with a variety of different ways to interact with other modules, so let's look at what we have available to us.
 
 ### `alias`
 
@@ -140,7 +140,7 @@ defmodule Example do
 end
 ```
 
-If there's a conflict with two aliases or you just wish to alias to a different name entirely, we can use the `:as` option:
+If there's a conflict with two aliases or you wish to alias to a different name entirely, we can use the `:as` option:
 
 ```elixir
 defmodule Example do
@@ -173,9 +173,9 @@ iex> last([1, 2, 3])
 
 #### Filtering
 
-By default all functions and macros are imported but we can filter them using the `:only` and `:except` options.
+By default all functions and macros are imported, but we can filter them using the `:only` and `:except` options.
 
-To import specific functions and macros we need must provide the name/arity pairs to `:only` and `:except`.  Let's start by importing only the `last/1` function:
+To import specific functions and macros, we need to provide the name/arity pairs to `:only` and `:except`.  Let's start by importing only the `last/1` function:
 
 ```elixir
 iex> import List, only: [last: 1]
@@ -196,7 +196,7 @@ iex> last([1, 2, 3])
 ** (CompileError) iex:3: undefined function last/1
 ```
 
-In addition to the name/arty pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
+In addition to the name/arity pairs there are two special atoms, `:functions` and `:macros`, which import only functions and macros respectively:
 
 ```elixir
 import List, only: :functions
@@ -205,7 +205,7 @@ import List, only: :macros
 
 ### `require`
 
-Although used less frequently `require/2` is nonetheless important.  Requiring a module ensures that it is compiled and loaded.  This is most useful when we need to access a module's macros:
+Although used less frequently, `require/2` is nonetheless important.  Requiring a module ensures that it is compiled and loaded.  This is most useful when we need to access a module's macros:
 
 ```elixir
 defmodule Example do
