@@ -32,7 +32,7 @@ Elixir treats documentation as a *first-class citizen*, offering various functio
 
 ### Inline Documentation
 
-Probably the simplest way to comment your code is with inline comments. Similar to Ruby or Python, Elixir's inline comment is denoted with a `#`, frequently known as a *pound*, or a *hash* depending on where you are from in the world. 
+Probably the simplest way to comment your code is with inline comments. Similar to Ruby or Python, Elixir's inline comment is denoted with a `#`, frequently known as a *pound* or a *hash*, depending on where you are from in the world. 
 
 Take this Elixir Script (greeting.exs):
 
@@ -41,7 +41,7 @@ Take this Elixir Script (greeting.exs):
 IO.puts "Hello, " <> "chum."
 ```
 
-Elixir, when running this script will ignore everything from `#` to the end of the line, treating it as throw away data. It may add no value to the operation or performance of the script, however when it's not so obvious what is happening a programmer should know from reading your comment. Be mindful not to abuse the single line comment! Littering a codebase could become an unwelcome nightmare for some. It is best used in moderation.
+Elixir, when running this script will ignore everything from `#` to the end of the line, treating it as throw away data. It may add no value to the operation or performance of the script, however when it's not obvious what's happening a programmer should know from reading your comment. Be mindful not to abuse the single line comment! Littering a codebase could become an unwelcome nightmare for some. It is best used in moderation.
 
 ### Documenting Modules
 
@@ -132,11 +132,11 @@ Examples
 iex>
 ```
 
-Notice how you can use markup within out documentation and the terminal will render it? Apart from really being cool and a novel addition to Elixir's vast ecosystem, it gets much more interesting when we look at ExDoc to generate HTML documentation on the fly.
+Notice how you can use markup within out documentation and the terminal will render it? Apart from being really cool and a novel addition to Elixir's vast ecosystem, it gets much more interesting when we look at ExDoc to generate HTML documentation on the fly.
 
 ## ExDoc
 
-ExDoc is an official Elixir project that **produces HTML (HyperText Markup Language and online documentation for Elixir projects** that can be found on [GitHub](https://github.com/elixir-lang/ex_doc). First let's create a Mix project for our application:
+ExDoc is an official Elixir project that **produces HTML (HyperText Markup Language) and online documentation for Elixir projects** that can be found on [GitHub](https://github.com/elixir-lang/ex_doc). First let's create a Mix project for our application:
 
 ```bash
 $ mix new greet_everyone
@@ -188,7 +188,7 @@ Examples
 
 ### Installing
 
-Assuming all is well, and we're seeing the output above suggests that we are ready to set up ExDoc. Within our `mix.exs` file add the two required dependencies to get started; `:earmark` and `:ex_doc`.
+Assuming all is well and we're seeing the output above suggests that we are ready to set up ExDoc. Within our `mix.exs` file add the two required dependencies to get started: `:earmark` and `:ex_doc`.
 
 ```elixir
   def deps do
@@ -221,11 +221,11 @@ We can see that Earmark has rendered our markdown and ExDoc is now displaying it
 
 ![ExDoc Screenshot 2]({{ site.url }}/assets/documentation_2.png)
 
-We can now deploy this to GitHub, our own website, more commonly [HexDocs](https://hexdocs.pm/).
+We can now deploy this to GitHub, our own website, or, more commonly, [HexDocs](https://hexdocs.pm/).
 
 ## Best Practice
 
-Adding documentation should be added within the Best practices guidelines of the language. Since Elixir is a fairly young language many standards are still to be discovered as the ecosystem grows. The community, however, has made efforts to establish best practices. To read more about best practices see [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
+Adding documentation should be added within the Best Practices guidelines of the language. Since Elixir is a fairly young language, many standards are still to be discovered as the ecosystem grows. The community, however, has made efforts to establish best practices. To read more about best practices see [The Elixir Style Guide](https://github.com/niftyn8/elixir_style_guide).
 
   - Always document a module.
 
@@ -313,6 +313,6 @@ defmodule Greeter do
 end
 ```
 
- - Try to include some code examples in your documentation, this also allows you to generate automatic tests from the code examples found in a module, function or macro with [ExUnit.DocTest][]. In order to do that, one needs to invoke the `doctest/1` macro from their test case and write their examples according to some guidelines, which are detailed in the [official documentation][ExUnit.DocTest]
+ - Try to include some code examples in your documentation. This also allows you to generate automatic tests from the code examples found in a module, function, or macro with [ExUnit.DocTest][]. In order to do that, one needs to invoke the `doctest/1` macro from their test case and write their examples according to the guidelines, which are detailed in the [official documentation][ExUnit.DocTest]
 
 [ExUnit.DocTest]: http://elixir-lang.org/docs/master/ex_unit/ExUnit.DocTest.html
