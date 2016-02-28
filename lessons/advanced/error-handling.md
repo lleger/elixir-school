@@ -6,7 +6,7 @@ order: 2
 lang: en
 ---
 
-Although more common to return the `{:error, reason}` tuple, Elixir supports exceptions and in this lesson we'll look at how to handle errors and the different mechanisms available to us.
+Although more common to return the `{:error, reason}` tuple, Elixir also supports exceptions. In this lesson, we'll look at how to handle errors and the different mechanisms available to us.
 
 In general the convention in Elixir is to create a function (`example/1`) which returns `{:ok, result}` and `{:error, reason}` and a separate function (`example!/1`) that returns the unwrapped `result` or raises an error.
 
@@ -22,7 +22,7 @@ This lesson will focus on interacting with the latter.
 
 ## Error Handling
 
-Before we can handle errors we need to create them and the simpliest way to do so is with `raise/1`:
+Before we can handle errors we need to create them, and the simpliest way to do so is with `raise/1`:
 
 ```elixir
 iex> raise "Oh no!"
@@ -36,7 +36,7 @@ iex> raise ArgumentError, message: "the argument value is invalid"
 ** (ArgumentError) the argument value is invalid
 ```
 
-When we know an error may occur, we can handle it using `try/rescue` and pattern matching:
+When we know an error may occur, we can handle it using `try`/`rescue` and pattern matching:
 
 ```elixir
 iex> try do
@@ -63,7 +63,7 @@ end
 
 ## After
 
-At times it may be necessary to perform some action after our `try/rescue` regardless of error, for this we have `try/after`.  If you're familiar with Ruby this is akin to `begin/rescue/ensure` or in Java `try/catch/finally`:
+At times it may be necessary to perform some action after our `try`/`rescue` regardless of error, for this we have `try`/`rescue`/`after`.  If you're familiar with Ruby this is akin to `begin`/`rescue`/`ensure` or in Java `try`/`catch`/`finally`:
 
 ```elixir
 iex> try do
@@ -91,7 +91,7 @@ end
 
 ## New Errors
 
-While Elixir includes a number of builtin error types like `RuntimeError`, we maintain the ability to create our own if we need something specific.  Creating a new error is easy with the `defexception/1` macro which conveniently accepts the `:message` option to set a default error message:
+While Elixir includes a number of built-in error types (like `RuntimeError`), we maintain the ability to create our own if we need something specific.  Creating a new error is easy with the `defexception/1` macro which conveniently accepts the `:message` option to set a default error message:
 
 ```elixir
 defmodule ExampleError do
@@ -112,7 +112,7 @@ iex> try do
 
 ## Throws
 
-Another mechanism for working with errors in Elixir is `throw` and `catch`.  In practice these occur very infrequently in newer Elixir code but it's important to know and understand them nonetheless.
+Another mechanism for working with errors in Elixir is `throw` and `catch`.  In practice, these occur very infrequently in newer Elixir code, but it's important to know and understand them nonetheless.
 
 The `throw/1` function gives us the ability to exit execution with a specific value we can `catch` and use:
 
@@ -133,7 +133,7 @@ iex> try do
 "Caught: 5"
 ```
 
-As mentioned, `throw/catch` are quite uncommon and typically exist as stopgaps when libraries fail to provide adequate APIs.
+As mentioned, `throw` and `catch` are quite uncommon and typically exist as stopgaps when libraries fail to provide adequate APIs.
 
 ## Exiting
 
@@ -146,7 +146,7 @@ iex> spawn_link fn -> exit("oh no") end
 ** (EXIT from #PID<0.101.0>) "oh no"
 ```
 
-While it is possible to catch an exit with `try/catch` doing so is _extremely_ rare.  In almost all cases it is advantagous to let the supervisor handle the process exit:
+While it is possible to catch an exit with `try`/`catch` doing so is _extremely_ rare.  In almost all cases it is advantagous to let the supervisor handle the process exit:
 
 ```elixir
 iex> try do
