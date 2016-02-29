@@ -6,9 +6,9 @@ order: 7
 lang: en
 ---
 
-Metaprogramming is the process of using code to write code.  In Elixir this gives us the ability to extend the language to fit our needs and dynamically change the code.  We'll start by looking at how Elixir is represented under the hood, then how to modify it, and finally we can use this knowledge to extend it.
+Metaprogramming is the process of using code to write code.  In Elixir this gives us the ability to extend the language to fit our needs by dynamically change code.  We'll start by looking at how Elixir is represented under the hood, then learn how to modify it, and finally using this knowledge to extend the language itself.
 
-A word of caution:  Metaprogramming is tricky and should only be used when absolutely necessary.  Overuse will almost certainly lead to complex code that is difficult to understand and debug.
+A word of caution:  metaprogramming is tricky and should only be used when absolutely necessary.  Overuse will almost certainly lead to complex code that is difficult to understand and debug.
 
 ## Table of Contents
 
@@ -21,7 +21,7 @@ A word of caution:  Metaprogramming is tricky and should only be used when absol
 
 ## Quote
 
-The first step to metaprogramming is understanding how expressions are represented.  In Elixir the abstract syntax tree (AST), the internal representation of our code, is comprised of tuples.  These tuples contain three parts: function name, metadata, and function arguments.
+The first step to metaprogramming is understanding how expressions are represented.  In Elixir, the abstract syntax tree -- or AST, the internal representation of our code -- is comprised of tuples.  These tuples contain three parts: function name, metadata, and function arguments.
 
 In order to see these internal structures, Elixir supplies us with the `quote/2` function.  Using `quote/2` we can convert Elixir code into their underlying representation:
 
@@ -40,7 +40,7 @@ iex> quote do: if value, do: "True", else: "False"
 iex(6)>
 ```
 
-Notice the first three don't return tuples?  There are five literals that return themselves when quoted:
+Notice the first three don't return tuples.  There are five literals that return themselves when quoted:
 
 ```elixir
 iex> :atom
@@ -57,7 +57,7 @@ iex> {"hello", :world} # 2 element tuples
 
 ## Unquote
 
-Now that we can retrieve the internal structure of our code, how do we modify it?  To inject new code or values we rely use `unquote/1`.  When we unquote an expression it will be evaluated and injected into the AST.  To demonstrate `unqoute/1` let's look at some examples:
+Now that we can retrieve the internal structure of our code, how do we modify it?  To inject new code or values we can use `unquote/1`.  When we unquote an expression it will be evaluated and injected into the AST.  To demonstrate `unquote/1` let's look at some examples:
 
 ```elixir
 iex> denominator = 2
@@ -68,11 +68,11 @@ iex> quote do: divide(42, unquote(denominator))
 {:divide, [], [42, 2]}
 ```
 
-In the first example our variable `denominator` is quoted so the resulting AST includes a tuple for accessing the variable.  In the `unquote/1` example the resulting code includes the value of `denominator` instead.
+In the first example, our variable `denominator` is quoted so the resulting AST includes a tuple for accessing the variable.  However, in the second example the resulting code includes the value of `denominator` instead.
 
 ## Macros
 
-Once we understand `quote/2` and `unquote/1` we're ready to dive into macros.  It is important to remember that macros, like all metaprogramming, should be used sparingly.
+Once we understand `quote/2` and `unquote/1` we're ready to dive into macros.  It's important to remember that macros, like all metaprogramming, should be used sparingly.
 
 In the simplest of terms macros are special functions designed to return a quoted expression that will be inserted into our application code.  Imagine the macro being replaced with the quoted expression rather than called like a function.  With macros we have everything necessary to extend Elixir and dynamically add code to our applications.
 
@@ -99,7 +99,7 @@ iex> OurMacro.unless false, do: "Hi"
 "Hi"
 ```
 
-Because macros replace code in our application we can control when and what is compiled.  An example of this can be found in the `Logger` module.  When logging is disabled no code is injected and the resulting application contains no references or function calls to logging.  This is different from other languages where there is still the overhead of a function call even when the implementation is NOP.
+Because macros replace code in our application we can control when and what is compiled.  An example of this can be found in the `Logger` module.  When logging is disabled no code is injected and the resulting application contains no references or function calls to logging.  This is different from other languages where there is still the overhead of a function call even when the implementation doesn't actually do anything.
 
 To demonstrate this we'll make a simple logger that can either be enabled or disabled:
 
@@ -144,7 +144,7 @@ Though not as common, Elixir does support private macros.  A private macro is de
 
 ### Macro Hygiene
 
-How macros interact with the caller's context when expanded is known as macro hygiene. By default macros in Elixir are hygienic and will not conflict with our context:
+Macro hygiene describes how macros interact with the caller's context when expanded. By default macros in Elixir are hygienic and will not conflict with our context:
 
 ```elixir
 defmodule Example do
@@ -194,13 +194,13 @@ iex> val
 -1
 ```
 
-By including `var!/2` in our macro we manipulated the value of `val` without passing it into our macro.  The use of non-hygienic macros should be kept to a minimum.  By including `var!/2` we increase the risk of a variable resolution conflict.
+By calling `var!/2` in our macro we manipulated the value of `val` without passing it into our macro.  The use of non-hygienic macros should be kept to a minimum.  By including `var!/2` we increase the risk of a variable resolution conflict.
 
 ### Binding
 
-We already covered the usefulness of `unquote/1` but there's another way to inject values into our code: binding.  With variable binding we are able to include multiple variables in our macro and ensure they're only unquoted once, avoiding accidental revaluations. To use bind variables we need to pass a keyword list the `bind_quoted` option in `quote/2`.
+We already covered the usefulness of `unquote/1`, but there's another way to inject values into our code: binding.  With variable binding we are able to include multiple variables in our macro and ensure they're only unquoted once, avoiding accidental re-evaluations. To use bind variables we need to pass a keyword list in the `bind_quoted` option in `quote/2`.
 
-To see the benefit of `bind_quote` and to demonstrate the revaluation issue let's use an example.  We can start by creating a macro that simply outputs the expression twice:
+To see the benefit of `bind_quote` and to demonstrate the re-evaluation issue let's use an example.  We can start by creating a macro that simply outputs the expression twice:
 
 ```elixir
 defmodule Example do
@@ -221,7 +221,7 @@ iex> Example.double_puts(:os.system_time)
 1450475941851733000
 ```
 
-The times are different!  What happened?  Using `unquote/1` on the same expression multiple times results in revaluation and that can have unintended consequences.  Let's update the example to use `bind_quoted` and see what we get:
+The times are different!  What happened?  Using `unquote/1` on the same expression multiple times results in re-evaluation and that can have unintended consequences.  Let's update the example to use `bind_quoted` and see what we get:
 
 ```elixir
 defmodule Example do
