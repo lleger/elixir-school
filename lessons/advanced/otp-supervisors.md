@@ -6,7 +6,7 @@ order: 6
 lang: en
 ---
 
-Supervisors are specialized processes with one purpose: monitoring other processes. These supervisors enable us to create fault-tolerant applications by automatically restarting child processes when they fail.
+Supervisors are specialized processes with one purpose: monitoring other processes. Supervisors enable us to create fault-tolerant applications by automatically restarting child processes when they fail.
 
 ## Table of Contents
 
@@ -19,11 +19,11 @@ Supervisors are specialized processes with one purpose: monitoring other process
 
 ## Configuration
 
-The magic to Supervisors is in the `Supervisor.start_link/2` function.  In addition to starting our supervisor and children, it allows us to define the strategy our supervisor uses for managing child processes.
+The magic to Supervisors is in the `Supervisor.start_link/2` function.  In addition to starting a supervisor and its children, the `start_link/2` function allows us to define the strategy a supervisor uses for managing child processes.
 
-Children are defined using a list and the `worker/3` function we imported from `Supervisor.Spec`.  The `worker/3` function takes a module, arguments, and a set of options.  Under the hood `worker/3` calls `start_link/3` with our arguments during initialization.
+Children are defined using a list and the `worker/3` function imported from `Supervisor.Spec`.  The `worker/3` function takes a module, arguments, and a set of options.  Under the hood `worker/3` calls `start_link/3` with our arguments during initialization.
 
-Using the SimpleQueue from the [OTP Concurrency](/lessons/advanced/otp-concurrency) lesson let's get started:
+Using the SimpleQueue from the [OTP Concurrency lesson](/lessons/advanced/otp-concurrency), let's get started:
 
 ```elixir
 import Supervisor.Spec
@@ -51,7 +51,7 @@ There are currently four different restart strategies available to supervisors:
 
 ### Nesting
 
-In addition to worker processes we can also supervise supervisors to create a supervisor tree.  The only difference to us swapping `supervisor/3` for `worker/3`:
+In addition to worker processes, we can also supervise supervisors to create a supervisor tree.  The only difference is swapping `supervisor/3` for `worker/3`:
 
 ```elixir
 import Supervisor.Spec
@@ -66,7 +66,7 @@ children = [
 
 ## Task Supervisor
 
-Tasks have their own specialized Supervisor, the `Task.Supervisor`.  Designed for dynamically created tasks the supervisor uses `:simple_one_for_one` under the hood.
+Tasks have their own specialized Supervisor: `Task.Supervisor`.  Designed for dynamically created tasks, the supervisor uses `:simple_one_for_one` under the hood.
 
 ### Setup
 
@@ -90,4 +90,4 @@ With the supervisor started we can use the `start_child/2` function to create a 
 {:ok, pid} = Task.Supervisor.start_child(ExampleApp.TaskSupervisor, fn -> background_work end)
 ```
 
-If our task crashes prematurely it will be re-started for us.  This can be particularly useful when working with incoming connections or processing background work.
+If our task crashes prematurely it will be restarted for us.  This can be particularly useful when working with incoming connections or processing background work.
